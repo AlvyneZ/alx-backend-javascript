@@ -10,7 +10,7 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
       const ret = results;
       for (const idx in ret) {
         if (Object.prototype.hasOwnProperty.call(ret[idx], 'reason')) {
-          ret[idx].value = ret[idx].reason;
+          ret[idx].value = String(ret[idx].reason);
           delete ret[idx].reason;
         }
       }
