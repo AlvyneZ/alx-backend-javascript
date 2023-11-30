@@ -6,6 +6,16 @@ export default function handleProfileSignup(firstName, lastName, fileName) {
     signUpUser(firstName, lastName),
     uploadPhoto(fileName),
   ]).then(
-    (results) => results,
+    (results) => {
+      const ret = results;
+      for (const idx in ret) {
+        if (Object.prototype.hasOwnProperty.call(ret[idx], 'reason')) {
+          ret[idx].value = ret[idx].reason;
+          delete ret[idx].reason;
+        }
+      }
+
+      return ret;
+    },
   );
 }
