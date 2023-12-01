@@ -41,7 +41,11 @@ export default class Car {
     }
   }
 
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
-    return new this.constructor();
+    return new this.constructor[Symbol.species]();
   }
 }
