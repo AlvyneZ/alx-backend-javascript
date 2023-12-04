@@ -12,9 +12,12 @@ export default function updateStudentGradeByCity(studentsList, city, newGrades) 
   return studentsList.filter(
     (student) => (student.location === city),
   ).map(
-    (student) => ({
-      ...student,
-      newGrade: newGrades.find((grade) => grade.studentId === student.id)?.grade || 'N/A',
-    }),
+    (student) => {
+      const stGrade = newGrades.find((grade) => grade.studentId === student.id);
+      return {
+        ...student,
+        newGrade: stGrade ? stGrade.grade : 'N/A',
+      };
+    },
   );
 }
