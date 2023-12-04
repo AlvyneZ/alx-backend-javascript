@@ -3,7 +3,7 @@ export default function cleanSet(aSet, startString) {
     return Array.from(aSet)
       .map(
         (value) => {
-          if (value.startsWith(startString)) {
+          if (value && typeof value === 'string' && value.startsWith(startString)) {
             return value.slice(startString.length);
           }
           return null;
