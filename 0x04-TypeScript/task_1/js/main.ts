@@ -20,6 +20,34 @@ const printTeacher: printTeacherFunction = function (firstName: string, lastName
   return `${firstName.slice(0,1)}. ${lastName}`;
 };
 
+interface StudentConfig {
+  firstName: string;
+  lastName: string;
+}
+
+interface Student extends StudentConfig {
+  workOnHomework: () => string;
+  displayName: () => string;
+}
+
+class StudentClass implements Student {
+  firstName: string;
+  lastName: string;
+
+  constructor (config: StudentConfig) {
+    this.firstName = config.firstName;
+    this.lastName = config.lastName;
+  }
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
 const teacher3: Teacher = {
   firstName: 'John',
   fullTimeEmployee: false,
@@ -39,3 +67,11 @@ const director1: Directors = {
 console.log(director1);
 
 console.log(printTeacher('John', 'Doe'));
+
+const student: Student = new StudentClass({
+  firstName: 'Carl',
+  lastName: 'Iba',
+});
+console.log(student);
+console.log(student.workOnHomework());
+console.log(student.displayName());
