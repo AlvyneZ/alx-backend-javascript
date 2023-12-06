@@ -1,8 +1,8 @@
 interface Student {
-  firstName:string,
-  lastName:string,
-  age:number,
-  location:string
+  firstName: string;
+  lastName: string;
+  age: number;
+  location: string;
 }
 
 const studentsList: Student[] = [
@@ -21,15 +21,21 @@ const studentsList: Student[] = [
 ];
 
 // Vanilla JS for rendering a table with the firstNames and locations of each student
-let table = document.createElement('table');
-let tableBody = document.createElement('tbody');
+const table = document.createElement('table');
 
-table.style.border = '1px solid black';
+const rowHead = document.createElement('tr');
+const nameColHead = document.createElement('th');
+const locationColHead = document.createElement('th');
+nameColHead.textContent = 'First Name';
+locationColHead.textContent = 'Location';
+rowHead.appendChild(nameColHead);
+rowHead.appendChild(locationColHead);
+table.appendChild(rowHead);
 
 studentsList.forEach(student => {
-    let row = document.createElement('tr');
-    let nameCol = document.createElement('td');
-    let locationCol = document.createElement('td');
+    const row = document.createElement('tr');
+    const nameCol = document.createElement('td');
+    const locationCol = document.createElement('td');
 
     nameCol.textContent = student.firstName;
     locationCol.textContent = student.location;
@@ -41,7 +47,6 @@ studentsList.forEach(student => {
 
     row.appendChild(nameCol);
     row.appendChild(locationCol);
-    tableBody.appendChild(row);
+    table.appendChild(row);
 });
-table.appendChild(tableBody);
 document.body.appendChild(table);
