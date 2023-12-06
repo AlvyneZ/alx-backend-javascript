@@ -1,21 +1,51 @@
-interface Teacher {
-  readonly firstName: string;
-  readonly lastName: string;
-  fullTimeEmployee: boolean;
-  yearsOfExperience?: number;
-  location: string;
-  [x: string]: unknown;
+interface DirectorInterface {
+  workFromHome: () => string;
+  getCoffeeBreak: () => string;
+  workDirectorTasks: () => string;
 }
 
-interface Directors extends Teacher {
-  numberOfReports: number;
+interface TeacherInterface {
+  workFromHome: () => string;
+  getCoffeeBreak: () => string;
+  workTeacherTasks: () => string;
 }
 
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-console.log(director1);
+class Director implements DirectorInterface {
+  workFromHome(): string {
+    return 'Working from home';
+  }
+
+  getCoffeeBreak(): string {
+    return 'Getting a coffee break';
+  }
+
+  workDirectorTasks(): string {
+    return 'Getting to director tasks';
+  }
+}
+
+class Teacher implements TeacherInterface {
+  workFromHome(): string {
+    return 'Cannot work from home';
+  }
+
+  getCoffeeBreak(): string {
+    return 'Cannot have a break';
+  }
+
+  workTeacherTasks(): string {
+    return 'Getting to work';
+  }
+}
+
+function createEmployee(salary: number | string): Director | Teacher {
+  if (Number(salary) < 500) {
+    return new Teacher();
+  }
+  return new Director();
+}
+
+
+console.log(createEmployee(200).constructor.name);
+console.log(createEmployee(1000).constructor.name);
+console.log(createEmployee('$500').constructor.name);
