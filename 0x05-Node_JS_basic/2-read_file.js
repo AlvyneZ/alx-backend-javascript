@@ -8,7 +8,7 @@ function countStudents(path) {
     path, 'utf-8',
   ).toString().trim().split('\n');
 
-  console.log(`Number of students: ${fileContent.length}`);
+  console.log(`Number of students: ${fileContent.length - 1}`);
   const studentFields = {};
   const fileColumns = fileContent[0].split(',');
   const firstNameColumn = fileColumns.indexOf('firstname');
