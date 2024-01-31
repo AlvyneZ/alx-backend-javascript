@@ -65,7 +65,7 @@ const ROUTES = [
           res.end();
         })
         .catch((err) => {
-          res.write(err.toString());
+          res.write((err instanceof Error) ? err.message : err.toString());
           res.end();
         });
     },
