@@ -58,9 +58,9 @@ const ROUTES = [
   {
     route: '/students',
     handler(_, res) {
+      res.write('This is the list of our students\n');
       countStudents(CSV)
         .then((students) => {
-          res.write('This is the list of our students\n');
           res.write(students);
           res.end();
         })
